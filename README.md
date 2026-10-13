@@ -1,26 +1,62 @@
 # Dog vs Cat Classifier
 
-A live browser-based image classifier built with **TensorFlow.js** and **MobileNet**.
+A browser-based image-classification demo that predicts whether an uploaded image is more likely to contain a **dog** or a **cat**.
 
 ## Live app
 
-**https://dog-cat-classifier-sankalp.vercel.app/**
+**https://dog-cat-classifier.vercel.app/**
+
+## What changed
+
+The repository originally contained no source code, model, dataset configuration, or runnable demo.
+
+It now contains a complete hosted browser application that:
+
+- loads TensorFlow.js
+- loads a pretrained MobileNet image model
+- accepts image uploads or drag-and-drop
+- runs inference in the browser
+- maps ImageNet labels into dog/cat groups
+- shows a confidence bar
+- displays the top raw model predictions
+
+No backend, database, API key, or image upload server is required.
 
 ## How it works
 
-1. You choose or drag a pet image into the page.
-2. MobileNet loads in the browser.
-3. The model produces ImageNet labels and probabilities.
-4. The app groups common dog-breed and cat labels into two scores.
-5. The UI shows the result and the original top ImageNet predictions.
+```text
+Uploaded image
+   -> MobileNet inference in browser
+   -> Top ImageNet labels
+   -> Dog-label score vs cat-label score
+   -> Final demo prediction
+```
 
-The image stays in the browser. This deployment does not upload the photo to a backend.
+The model can recognize many individual dog breeds and several common cat labels. The app combines those probabilities into a simpler two-class result.
 
-## Why this implementation exists
+## Run locally
 
-The repository originally contained only documentation and no runnable model or source code.
+Because the page loads JavaScript model packages from a CDN, use a small local web server:
 
-To make the project honest and deployable, the live version uses a clearly identified pretrained MobileNet model instead of claiming a custom CNN that was not present in the repository.
+```bash
+cd web
+python -m http.server 8000
+```
+
+Then open:
+
+```text
+http://localhost:8000
+```
+
+## Project structure
+
+```text
+DOG-CAT-CLASSIFIER/
+├── web/
+│   └── index.html
+└── README.md
+```
 
 ## Tech stack
 
@@ -31,25 +67,14 @@ To make the project honest and deployable, the live version uses a clearly ident
 - MobileNet
 - Vercel
 
-## Run locally
-
-```bash
-cd web
-python -m http.server 8000
-```
-
-Open `http://localhost:8000`.
-
-Internet access is needed the first time because TensorFlow.js and MobileNet are loaded from a CDN.
-
 ## Limitations
 
-- This is an ImageNet-based portfolio demo.
-- It is not a custom-trained dog/cat binary model.
-- Unusual images may return “Not sure”.
-- It should not be used for animal health or safety decisions.
+This is a portfolio/learning classifier built on a general ImageNet model rather than a custom dog-vs-cat training dataset. Images outside those classes may be marked uncertain.
+
+It is not a veterinary or scientific diagnostic system.
 
 ## Author
 
-Sankalp Gupta  
+**Sankalp Gupta**
+
 GitHub: https://github.com/Sankalp-gupta1
