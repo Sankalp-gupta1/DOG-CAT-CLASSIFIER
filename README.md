@@ -4,7 +4,7 @@ A browser-based image-classification demo that predicts whether an uploaded imag
 
 ## Live app
 
-**https://dog-cat-classifier.vercel.app/**
+**https://dog-cat-classifier-lac.vercel.app/**
 
 ## What changed
 
